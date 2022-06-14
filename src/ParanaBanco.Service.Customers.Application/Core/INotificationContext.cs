@@ -1,7 +1,7 @@
 ﻿using ParanaBanco.Service.Customers.Domain.Notifications;
 using System.ComponentModel.DataAnnotations;
 
-namespace ParanaBanco.Service.Customer.Api.Endpoints.Core
+namespace ParanaBanco.Service.Customers.Application.Core
 {
     public interface INotificationContext
     {

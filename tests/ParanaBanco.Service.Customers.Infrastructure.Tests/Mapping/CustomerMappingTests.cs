@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using ParanaBanco.Service.Customers.Domain.Entities;
-using ParanaBanco.Service.Customers.Infrastructure.Data.Extensions;
+using ParanaBanco.Service.Customers.Infrastructure.Data.Mapping;
 
 namespace ParanaBanco.Service.Customers.Infrastructure.Tests.Mapping
 {

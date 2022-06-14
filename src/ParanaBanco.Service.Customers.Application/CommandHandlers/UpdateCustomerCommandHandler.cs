@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using ParanaBanco.Service.Customer.Api.Endpoints.Core;
 using ParanaBanco.Service.Customers.Application.Commands;
+using ParanaBanco.Service.Customers.Application.Core;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
 using ParanaBanco.Service.Customers.Domain.Notifications;
 using ParanaBanco.Service.Customers.Domain.Services;

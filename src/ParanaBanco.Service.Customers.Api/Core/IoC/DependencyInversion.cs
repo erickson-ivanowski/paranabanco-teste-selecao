@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using ParanaBanco.Service.Customer.Api.Endpoints.Core;
 using ParanaBanco.Service.Customers.Application.Commands;
+using ParanaBanco.Service.Customers.Application.Core;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
 using ParanaBanco.Service.Customers.Domain.Services;
 using ParanaBanco.Service.Customers.Infrastructure.Data.Config;

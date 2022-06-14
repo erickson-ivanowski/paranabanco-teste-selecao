@@ -1,6 +1,6 @@
 ﻿using ParanaBanco.Service.Customers.Domain.Notifications;
 
-namespace ParanaBanco.Service.Customer.Api.Endpoints.Core
+namespace ParanaBanco.Service.Customers.Application.Core
 {
     public class NotificationContext : INotificationContext
     {

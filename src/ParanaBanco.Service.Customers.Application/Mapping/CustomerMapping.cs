@@ -1,6 +1,6 @@
 ﻿using ParanaBanco.Service.Customers.Application.ViewModels;
 
-namespace ParanaBanco.Service.Customers.Application.Extensions
+namespace ParanaBanco.Service.Customers.Application.Mapping
 {
     public static class CustomerMapping
     {

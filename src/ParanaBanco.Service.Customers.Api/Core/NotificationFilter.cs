@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using ParanaBanco.Service.Customer.Api.Endpoints.Core;
+using ParanaBanco.Service.Customers.Application.Core;
 
 namespace ParanaBanco.Service.Customers.Api.Core
 {

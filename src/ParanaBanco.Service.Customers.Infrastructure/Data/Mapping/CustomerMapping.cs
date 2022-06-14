@@ -1,4 +1,4 @@
-﻿namespace ParanaBanco.Service.Customers.Infrastructure.Data.Extensions
+﻿namespace ParanaBanco.Service.Customers.Infrastructure.Data.Mapping
 {
     public static class CustomerMapping
     {

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ParanaBanco.Service.Customers.Application.Extensions;
+using ParanaBanco.Service.Customers.Application.Mapping;
 using ParanaBanco.Service.Customers.Application.Query;
 using ParanaBanco.Service.Customers.Application.ViewModels;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;

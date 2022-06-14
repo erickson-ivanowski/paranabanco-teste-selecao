@@ -2,7 +2,7 @@
 using ParanaBanco.Service.Customers.Domain.Entities;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
 using ParanaBanco.Service.Customers.Infrastructure.Data.Config;
-using ParanaBanco.Service.Customers.Infrastructure.Data.Extensions;
+using ParanaBanco.Service.Customers.Infrastructure.Data.Mapping;
 
 namespace ParanaBanco.Service.Customers.Infrastructure.Data.Repositories
 {
