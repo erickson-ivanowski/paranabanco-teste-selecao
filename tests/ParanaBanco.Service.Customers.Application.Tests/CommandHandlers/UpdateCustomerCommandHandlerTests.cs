@@ -61,26 +61,26 @@ namespace ParanaBanco.Service.Customers.Application.Tests.CommandHandlers
             CustomerMock.CustomerRepositoryMock.Verify(x => x.UpdateAsync(It.IsAny<Customer>()), Times.Never);
         }
 
-        //[Fact]
-        //public async Task Given_Valid_Customer_Should_Update_Customer()
-        //{
-        //    // Arrange
-        //    var command = new UpdateCustomerCommand
-        //    {
-        //        Email = "cwberick@live.com",
-        //        NewFullName = "Erickson",
-        //        NewEmail = "erickson@com"
-        //    };
-        //    var customer = new Customer(command.Email, "Erickson Ivanowski");
-        //    CustomerMock.SetupGetCustomerByEmail(command.Email, customer);
+        [Fact]
+        public async Task Given_Valid_Customer_Should_Update_Customer()
+        {
+            // Arrange
+            var command = new UpdateCustomerCommand
+            {
+                Email = "cwberick@live.com",
+                NewFullName = "Erickson Bet Ivanowski",
+                NewEmail = "erickson@live.com"
+            };
+            var customer = new Customer(command.Email, "Erickson Ivanowski");
+            CustomerMock.SetupGetCustomerByEmail(command.Email, customer);
 
-        //    // Act
-        //    await CustomerMock.GetInstance().Handle(command, CancellationToken.None);
+            // Act
+            await CustomerMock.GetInstance().Handle(command, CancellationToken.None);
 
-        //    // Assert
-        //    CustomerMock.CustomerRepositoryMock.Verify(x => x.GetCustomerAsync(command.Email), Times.Once);
-        //    CustomerMock.CustomerRepositoryMock.Verify(x => x.UpdateAsync(It.Is<Customer>(x => x.Email == command.NewEmail)), Times.Once);
-        //    CustomerMock.CustomerRepositoryMock.Verify(x => x.UpdateAsync(It.Is<Customer>(x => x.FullName == command.NewFullName)), Times.Once);
-        //}
+            // Assert
+            CustomerMock.CustomerRepositoryMock.Verify(x => x.GetCustomerAsync(command.Email), Times.Once);
+            CustomerMock.CustomerRepositoryMock.Verify(x => x.UpdateAsync(It.Is<Customer>(x => x.Email == command.NewEmail)), Times.Once);
+            CustomerMock.CustomerRepositoryMock.Verify(x => x.UpdateAsync(It.Is<Customer>(x => x.FullName == command.NewFullName)), Times.Once);
+        }
     }
 }
