@@ -9,6 +9,7 @@ using ParanaBanco.Service.Customers.Infrastructure.Data.Config;
 using ParanaBanco.Service.Customers.Infrastructure.Data.Repositories;
 using Serilog;
 using Serilog.Events;
+using System.Reflection;
 
 namespace ParanaBanco.Service.Customers.Api.Core.IoC
 {
@@ -24,17 +25,24 @@ namespace ParanaBanco.Service.Customers.Api.Core.IoC
 
             // Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo
+            builder.Services.AddSwaggerGen(options =>
             {
-                Version = "v1",
-                Title = "Paraná Banco - API",
-                Description = "Este é um teste para entrar no Paraná Banco ",
-                Contact = new OpenApiContact()
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Name = "Erickson Ivanowski",
-                    Email = "cwberick@live.nl"
-                }
-            }));
+                    Version = "v1",
+                    Title = "Paraná Banco - API",
+                    Description = "Este é um teste para entrar no Paraná Banco ",
+                    Contact = new OpenApiContact()
+                    {
+                        Name = "Erickson Ivanowski",
+                        Email = "cwberick@live.nl"
+                    },
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
 
             // Mediator
             builder.Services.AddMediatR(typeof(CreateCustomerCommand));
