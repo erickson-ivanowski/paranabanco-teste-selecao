@@ -61,7 +61,9 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
 
         private void ValidateFullName()
         {
-            if (string.IsNullOrEmpty(FullName) || string.IsNullOrWhiteSpace(FullName))
+            var regex = new Regex("^[a-zA-Z]+ [a-zA-Z ]+[a-z]$");
+
+            if (string.IsNullOrEmpty(FullName) || string.IsNullOrWhiteSpace(FullName) || regex.IsMatch(FullName) is false)
                 AddNotification(new FullNameRequiredNotification());
         }
     }
