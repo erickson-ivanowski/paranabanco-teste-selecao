@@ -60,7 +60,7 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
                 AddNotification(new EmailRequiredNotification());
             else if (regex.IsMatch(Email) is false)
                 AddNotification(new EmailInvalidNotification());
-            else if (EmailUpdated && await DomainService.EmailExists(Email))
+            else if (EmailUpdated is false && await DomainService.EmailExists(Email))
                 AddNotification(new CustomerExistsNotification());
             else if (NameUpdated is false && await DomainService.EmailExists(Email))
                 AddNotification(new CustomerExistsNotification());

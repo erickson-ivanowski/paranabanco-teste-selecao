@@ -7,8 +7,8 @@
             var model = new Models.Customer()
             {
                 Id = entity.Id,
-                Email = entity.Email ?? string.Empty,
-                FullName = entity.FullName ?? string.Empty,
+                Email = entity.Email,
+                FullName = entity.FullName
             };
 
             return model;

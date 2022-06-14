@@ -18,7 +18,7 @@ namespace ParanaBanco.Service.Customers.Infrastructure.Data.Repositories
 
         async Task<Customer> ICustomerRepository.GetCustomerAsync(string email)
         {
-            var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.Email == email);
+            var customer = await _dbContext.Customers.AsNoTracking().FirstOrDefaultAsync(c => c.Email == email);
             return customer?.AsEntity();
         }
 
