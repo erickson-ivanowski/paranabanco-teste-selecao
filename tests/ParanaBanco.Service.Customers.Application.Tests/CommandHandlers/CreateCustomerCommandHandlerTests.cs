@@ -55,7 +55,7 @@ namespace ParanaBanco.Service.Customers.Application.Tests.CommandHandlers
             await CustomerMock.GetInstance().Handle(command, CancellationToken.None);
 
             // Assert
-            CustomerMock.CustomerRepositoryMock.Verify(x => x.GetCustomerAsync(command.Email), Times.Once);
+            CustomerMock.CustomerRepositoryMock.Verify(x => x.GetCustomerAsync(command.Email), Times.Exactly(2));
             CustomerMock.CustomerRepositoryMock.Verify(x => x.SaveAsync(It.Is<Customer>(x => x.Email == command.Email)), Times.Once);
             CustomerMock.CustomerRepositoryMock.Verify(x => x.SaveAsync(It.Is<Customer>(x => x.FullName == command.FullName)), Times.Once);
         }
