@@ -32,7 +32,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
                 customer.SetDomainService(_customerServices);
 
-                if (await customer.IsValidAsync() is false)
+                if (await customer.IsValid() is false)
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer Email: {Email} FullName: {FullName} is invalid.", nameof(CreateCustomerCommand), request.Email, request.FullName);

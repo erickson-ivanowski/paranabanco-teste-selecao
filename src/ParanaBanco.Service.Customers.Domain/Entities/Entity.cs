@@ -10,7 +10,7 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
         }
         private List<Notification> _notifications { get; set; }
         public IReadOnlyCollection<Notification> Notifications => _notifications;
-        public virtual async Task<bool> IsValidAsync() => true;
+        public virtual bool IsValid() => false;
         internal void AddNotification(Notification notification)
         {
             _notifications.Add(notification);

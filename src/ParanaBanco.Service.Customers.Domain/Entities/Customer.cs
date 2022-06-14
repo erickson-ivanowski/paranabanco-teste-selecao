@@ -1,5 +1,4 @@
 ﻿using ParanaBanco.Service.Customers.Domain.Notifications;
-using ParanaBanco.Service.Customers.Domain.Services;
 using System.Text.RegularExpressions;
 
 namespace ParanaBanco.Service.Customers.Domain.Entities
@@ -24,32 +23,27 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
         public string Email { get; private set; }
         public string FullName { get; private set; }
 
-        private bool EmailUpdated = false;
-        private bool NameUpdated = false;
-
         public Customer SetEmail(string email)
         {
-            EmailUpdated = true;
             Email = email;
             return this;
         }
 
         public Customer SetFullName(string fullName)
         {
-            NameUpdated = true;
             FullName = fullName;
             return this;
         }
 
 
-        public override async Task<bool> IsValidAsync()
+        public override bool IsValid()
         {
-            await ValidateEmailAsync();
+            ValidateEmail();
             ValidateFullName();
             return !Notifications.Any();
         }
 
-        private async Task ValidateEmailAsync()
+        private void ValidateEmail()
         {
             var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 

@@ -40,7 +40,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
                 UpdatePropertiesOfCustomer();
 
-                if (await customer.IsValidAsync() is false)
+                if (await customer.IsValid() is false)
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer {Email} {FullName} is invalid", nameof(UpdateCustomerCommand), customer.Email, customer.FullName);

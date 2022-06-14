@@ -64,7 +64,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             var customer = new Customer(email, "Fulano da silva");
             var notification = new EmailRequiredNotification();
             // Act
-            await customer.IsValidAsync();
+            await customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -84,7 +84,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             var notification = new EmailInvalidNotification();
 
             // Act
-            await customer.IsValidAsync();
+            await customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -103,7 +103,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             customer.SetDomainService(mock.GetCustomerServices());
 
             // Act
-            await customer.IsValidAsync();
+            await customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -132,7 +132,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             customer.SetDomainService(mock.GetCustomerServices());
 
             // Act
-            await customer.IsValidAsync();
+            await customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -153,7 +153,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             customer.SetDomainService(mock.GetCustomerServices());
 
             // Act
-            await customer.IsValidAsync();
+            await customer.IsValid();
 
             // Assert
             customer.Notifications.Any().Should().BeFalse();
