@@ -2,8 +2,8 @@
 using ParanaBanco.Service.Customers.Application.Commands;
 using ParanaBanco.Service.Customers.Application.Core;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
+using ParanaBanco.Service.Customers.Domain.Interfaces.Services;
 using ParanaBanco.Service.Customers.Domain.Notifications;
-using ParanaBanco.Service.Customers.Domain.Services;
 using Serilog;
 
 namespace ParanaBanco.Service.Customers.Application.CommandHandlers
@@ -13,14 +13,14 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
         private readonly ICustomerRepository _customerRepository;
         private readonly INotificationContext _notificationContext;
         private readonly ILogger _log;
-        private readonly CustomerService _customerServices;
+        private readonly ICustomerService _customerService;
 
-        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, INotificationContext notificationContext, ILogger log, CustomerService customerServices)
+        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, INotificationContext notificationContext, ILogger log, ICustomerService customerService)
         {
             _customerRepository = customerRepository;
             _notificationContext = notificationContext;
             _log = log;
-            _customerServices = customerServices;
+            _customerService = customerService;
         }
 
         public async Task<Unit> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
@@ -36,11 +36,9 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
                     return Unit.Value;
                 }
 
-                customer.SetDomainService(_customerServices);
-
                 UpdatePropertiesOfCustomer();
 
-                if (await customer.IsValid() is false)
+                if (await IsCustomerValid())
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer {Email} {FullName} is invalid", nameof(UpdateCustomerCommand), customer.Email, customer.FullName);
@@ -56,6 +54,11 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
                 {
                     customer.SetEmail(request.NewEmail ?? customer.Email);
                     customer.SetFullName(request.NewFullName ?? customer.FullName);
+                }
+
+                async Task<bool> IsCustomerValid()
+                {
+                    return customer.IsValid() is false && await _customerService.CustomerExists(customer) is false;
                 }
             }
             catch (Exception ex)

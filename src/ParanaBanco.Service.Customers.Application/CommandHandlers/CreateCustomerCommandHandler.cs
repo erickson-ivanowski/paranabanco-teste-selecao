@@ -2,7 +2,7 @@
 using ParanaBanco.Service.Customers.Application.Commands;
 using ParanaBanco.Service.Customers.Application.Core;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
-using ParanaBanco.Service.Customers.Domain.Services;
+using ParanaBanco.Service.Customers.Domain.Interfaces.Services;
 using Serilog;
 
 namespace ParanaBanco.Service.Customers.Application.CommandHandlers
@@ -10,14 +10,14 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly CustomerService _customerServices;
+        private readonly ICustomerService _customerService;
         private readonly INotificationContext _notificationContext;
         private readonly ILogger _log;
 
-        public CreateCustomerCommandHandler(ICustomerRepository customerRepository, CustomerService customerServices, INotificationContext notificationContext, ILogger log)
+        public CreateCustomerCommandHandler(ICustomerRepository customerRepository, ICustomerService customerService, INotificationContext notificationContext, ILogger log)
         {
             _customerRepository = customerRepository;
-            _customerServices = customerServices;
+            _customerService = customerService;
             _notificationContext = notificationContext;
             _log = log;
         }
@@ -30,9 +30,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
                 var customer = new Domain.Entities.Customer(request.Email, request.FullName);
 
-                customer.SetDomainService(_customerServices);
-
-                if (await customer.IsValid() is false)
+                if (await IsCustomerValid())
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer Email: {Email} FullName: {FullName} is invalid.", nameof(CreateCustomerCommand), request.Email, request.FullName);
@@ -44,6 +42,11 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
 
                 return Unit.Value;
+
+                async Task<bool> IsCustomerValid()
+                {
+                    return customer.IsValid() is false && await _customerService.CustomerExists(customer) is false;
+                }
             }
             catch (Exception ex)
             {
