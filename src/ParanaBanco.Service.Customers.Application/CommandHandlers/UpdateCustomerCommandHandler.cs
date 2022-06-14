@@ -44,6 +44,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer {Email} {FullName} is invalid", nameof(UpdateCustomerCommand), customer.Email, customer.FullName);
+                    return Unit.Value;
                 }
 
                 await _customerRepository.UpdateAsync(customer);

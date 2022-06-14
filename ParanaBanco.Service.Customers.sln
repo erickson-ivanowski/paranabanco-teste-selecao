@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParanaBanco.Service.Custome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParanaBanco.Service.Customers.Infrastructure.Tests", "tests\ParanaBanco.Service.Customers.Infrastructure.Tests\ParanaBanco.Service.Customers.Infrastructure.Tests.csproj", "{F9DBE2B7-0D46-4C65-953E-2BC189FEFE19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParanaBanco.Service.Customers.Application.Tests", "tests\ParanaBanco.Service.Customers.Application.Tests\ParanaBanco.Service.Customers.Application.Tests.csproj", "{887C7211-F749-4996-ACB6-8F384B19E8DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{F9DBE2B7-0D46-4C65-953E-2BC189FEFE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DBE2B7-0D46-4C65-953E-2BC189FEFE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DBE2B7-0D46-4C65-953E-2BC189FEFE19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887C7211-F749-4996-ACB6-8F384B19E8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887C7211-F749-4996-ACB6-8F384B19E8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887C7211-F749-4996-ACB6-8F384B19E8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887C7211-F749-4996-ACB6-8F384B19E8DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E} = {F9CABDF8-6631-4152-8FE5-FC420B612C48}
 		{26E98D01-8D9F-46D3-BB3F-B412BD7C62F3} = {D050A580-05AD-450A-A812-8902404C1DFB}
 		{F9DBE2B7-0D46-4C65-953E-2BC189FEFE19} = {D050A580-05AD-450A-A812-8902404C1DFB}
+		{887C7211-F749-4996-ACB6-8F384B19E8DA} = {D050A580-05AD-450A-A812-8902404C1DFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99DA8F75-99DE-485E-ACC7-A40C77916BA4}

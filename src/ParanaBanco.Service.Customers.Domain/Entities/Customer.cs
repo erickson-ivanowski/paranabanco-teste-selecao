@@ -24,14 +24,19 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
         public string Email { get; private set; }
         public string FullName { get; private set; }
 
+        private bool EmailUpdated = false;
+        private bool NameUpdated = false;
+
         public Customer SetEmail(string email)
         {
+            EmailUpdated = true;
             Email = email;
             return this;
         }
 
         public Customer SetFullName(string fullName)
         {
+            NameUpdated = true;
             FullName = fullName;
             return this;
         }
@@ -55,7 +60,9 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
                 AddNotification(new EmailRequiredNotification());
             else if (regex.IsMatch(Email) is false)
                 AddNotification(new EmailInvalidNotification());
-            else if (await DomainService.EmailExists(Email))
+            else if (EmailUpdated && await DomainService.EmailExists(Email))
+                AddNotification(new CustomerExistsNotification());
+            else if (NameUpdated is false && await DomainService.EmailExists(Email))
                 AddNotification(new CustomerExistsNotification());
         }
 
