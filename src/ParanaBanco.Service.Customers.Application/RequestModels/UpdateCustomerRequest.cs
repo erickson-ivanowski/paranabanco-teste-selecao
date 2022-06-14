@@ -2,7 +2,7 @@
 {
     public class UpdateCustomerRequest
     {
-        public string? NewEmail { get; set; }
-        public string? NewFullName { get; set; }
+        public string NewEmail { get; set; }
+        public string NewFullName { get; set; }
     }
 }
