@@ -4,6 +4,8 @@ using ParanaBanco.Service.Customers.Application.Commands;
 using ParanaBanco.Service.Customers.Application.Query;
 using ParanaBanco.Service.Customers.Application.RequestModels;
 using ParanaBanco.Service.Customers.Application.ViewModels;
+using ParanaBanco.Service.Customers.Domain.Notifications;
+using System.ComponentModel;
 
 namespace ParanaBanco.Service.Customers.Api.Controllers
 {
@@ -24,7 +26,7 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet(Name = "Get all customers")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<CustomerViewModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CustomerViewModel>>> GetAll()
         {
             var result = await _mediator.Send(new GetCustomersQuery());
@@ -36,8 +38,8 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// Get a customer by email
         /// </summary>
         [HttpGet("{email}",Name = "Get Customer by email")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(CustomerViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Notification>),StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CustomerViewModel>> Get(string email)
         {
@@ -57,7 +59,7 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// </summary>
         [HttpPost(Name = "Create new customer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<Notification>), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Create(CreateCustomerCommand command)
         {
             await _mediator.Send(command);
@@ -70,7 +72,7 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// </summary>
         [HttpPut("{email}",Name = "Update customer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<Notification>), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Update(string email, [FromBody] UpdateCustomerRequest request)
         {
             var command = new UpdateCustomerCommand
@@ -90,7 +92,7 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// </summary>
         [HttpDelete("{email}",Name = "Delete customer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(IEnumerable<Notification>), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Delete(string email)
         {
             var command = new DeleteCustomerCommand
