@@ -24,6 +24,7 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet(Name = "Get all customers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CustomerViewModel>>> GetAll()
         {
             var result = await _mediator.Send(new GetCustomersQuery());
@@ -35,6 +36,9 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// Get a customer by email
         /// </summary>
         [HttpGet("{email}",Name = "Get Customer by email")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CustomerViewModel>> Get(string email)
         {
             var query = new GetCustomerByEmailQuery
@@ -52,17 +56,21 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// Create a customer
         /// </summary>
         [HttpPost(Name = "Create new customer")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Create(CreateCustomerCommand command)
         {
             await _mediator.Send(command);
 
-            return Created("customers/{email}", command.Email);
+            return NoContent();
         }
 
         /// <summary>
         /// Update a customer
         /// </summary>
         [HttpPut("{email}",Name = "Update customer")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Update(string email, [FromBody] UpdateCustomerRequest request)
         {
             var command = new UpdateCustomerCommand
@@ -81,6 +89,8 @@ namespace ParanaBanco.Service.Customers.Api.Controllers
         /// Delete a customer
         /// </summary>
         [HttpDelete("{email}",Name = "Delete customer")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Delete(string email)
         {
             var command = new DeleteCustomerCommand
