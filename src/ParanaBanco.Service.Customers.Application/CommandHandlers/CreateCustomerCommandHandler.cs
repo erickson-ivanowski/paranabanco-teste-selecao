@@ -30,7 +30,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
                 var customer = new Domain.Entities.Customer(request.Email, request.FullName);
 
-                if (await IsCustomerValid())
+                if (await IsCustomerValid() is false)
                 {
                     _notificationContext.AddNotifications(customer.Notifications);
                     _log.Information("Handling {Handle} Customer Email: {Email} FullName: {FullName} is invalid.", nameof(CreateCustomerCommand), request.Email, request.FullName);
@@ -45,7 +45,7 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
 
                 async Task<bool> IsCustomerValid()
                 {
-                    return customer.IsValid() is false && await _customerService.CustomerExists(customer) is false;
+                    return customer.IsValid() && await _customerService.CustomerExists(customer) is false;
                 }
             }
             catch (Exception ex)

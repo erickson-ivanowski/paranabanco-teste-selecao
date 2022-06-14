@@ -40,10 +40,11 @@ namespace ParanaBanco.Service.Customers.Application.Tests.CommandHandlers
         }
 
         [Fact]
-        public async Task Given_Valid_Customer_Should_Add_Notification()
+        public async Task Given_Valid_Customer_Should_Create_Customer()
         {
             // Arrange
             CustomerMock.SetupGetCustomerByEmail(It.IsAny<string>(), null);
+            CustomerMock.SetupCustomerExistsCustomerServiceMock(It.IsAny<Customer>(), false);
 
             var command = new CreateCustomerCommand
             {
@@ -55,7 +56,6 @@ namespace ParanaBanco.Service.Customers.Application.Tests.CommandHandlers
             await CustomerMock.GetInstance().Handle(command, CancellationToken.None);
 
             // Assert
-            CustomerMock.CustomerRepositoryMock.Verify(x => x.GetCustomerAsync(command.Email), Times.Exactly(2));
             CustomerMock.CustomerRepositoryMock.Verify(x => x.SaveAsync(It.Is<Customer>(x => x.Email == command.Email)), Times.Once);
             CustomerMock.CustomerRepositoryMock.Verify(x => x.SaveAsync(It.Is<Customer>(x => x.FullName == command.FullName)), Times.Once);
         }

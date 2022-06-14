@@ -58,13 +58,13 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
         [InlineData("")]
         [InlineData(" ")]
         [InlineData("             ")]
-        public async Task Given_Customer_With_Null_Empty_Whitespace_Email_Should_Add_Notification(string email)
+        public void Given_Customer_With_Null_Empty_Whitespace_Email_Should_Add_Notification(string email)
         {
             // Arrange
             var customer = new Customer(email, "Fulano da silva");
             var notification = new EmailRequiredNotification();
             // Act
-            await customer.IsValid();
+            customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -77,38 +77,37 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
         [InlineData("7878,@sisjs.com")]
         [InlineData("err@.com")]
         [InlineData("err@dasdas")]
-        public async Task Given_Customer_With_Invalid_Format_Email_Should_Add_Notification(string email)
+        public void Given_Customer_With_Invalid_Format_Email_Should_Add_Notification(string email)
         {
             // Arrange
             var customer = new Customer(email, "Fulano da silva");
             var notification = new EmailInvalidNotification();
 
             // Act
-            await customer.IsValid();
+            customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
             customer.Notifications.FirstOrDefault().Message.Should().Be(notification.Message);
         }
 
-        [Fact]
-        public async Task Given_Customer_Existent_Should_Add_Notification()
-        {
-            // Arrange
-            var email = "email@existente.com";
-            var customer = new Customer(email, "Fulano da silva");
-            var notification = new CustomerExistsNotification();           
-            var mock = new CustomerMock();
-            mock.SetupRepository(email, customer);
-            customer.SetDomainService(mock.GetCustomerServices());
+        //[Fact]
+        //public async Task Given_Customer_Existent_Should_Add_Notification()
+        //{
+        //    // Arrange
+        //    var email = "email@existente.com";
+        //    var customer = new Customer(email, "Fulano da silva");
+        //    var notification = new CustomerExistsNotification();           
+        //    var mock = new CustomerMock();
+        //    mock.SetupRepository(email, customer);
 
-            // Act
-            await customer.IsValid();
+        //    // Act
+        //    await customer.IsValid();
 
-            // Assert
-            customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
-            customer.Notifications.FirstOrDefault().Message.Should().Be(notification.Message);
-        }
+        //    // Assert
+        //    customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
+        //    customer.Notifications.FirstOrDefault().Message.Should().Be(notification.Message);
+        //}
 
         [Theory]
         [InlineData(null)]
@@ -121,18 +120,13 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
         [InlineData("Erickson B. Ivanowski")]
         [InlineData("Erickson Ivanowski ")]
         [InlineData(" Erickson Ivanowski ")]
-        public async Task Given_Customer_With_Null_Empty_Whitespace_FullName_Should_Add_Notification(string fullName)
+        public void Given_Customer_With_Null_Empty_Whitespace_FullName_Should_Add_Notification(string fullName)
         {
             // Arrange
             var customer = new Customer("email@dominio.com", fullName);
             var notification = new FullNameRequiredNotification();
-
-            var mock = new CustomerMock();
-            mock.SetupRepository(It.IsAny<string>(), null);
-            customer.SetDomainService(mock.GetCustomerServices());
-
             // Act
-            await customer.IsValid();
+            customer.IsValid();
 
             // Assert
             customer.Notifications.FirstOrDefault().Key.Should().Be(notification.Key);
@@ -143,17 +137,13 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
         [InlineData("cwberick@live.nl","Erickson Ivanowski")]
         [InlineData("cwberick@live.com", "Erickson B Ivanowski")]
         [InlineData("erick.ivanowski@gmail.com", "Erickson Bet Ivanowski")]
-        public async Task Given_Customer_Should_Be_Valid(string email, string fullName)
+        public void Given_Customer_Should_Be_Valid(string email, string fullName)
         {
             // Arrange
             var customer = new Customer(email, fullName);
 
-            var mock = new CustomerMock();
-            mock.SetupRepository(It.IsAny<string>(), null);
-            customer.SetDomainService(mock.GetCustomerServices());
-
             // Act
-            await customer.IsValid();
+            customer.IsValid();
 
             // Assert
             customer.Notifications.Any().Should().BeFalse();
