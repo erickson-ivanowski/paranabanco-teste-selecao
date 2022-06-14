@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParanaBanco.Service.Customer.Api", "ParanaBanco.Service.Customer.Api\ParanaBanco.Service.Customer.Api.csproj", "{CD8E537D-2755-4F7C-9BB2-5E3B28B93936}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F9CABDF8-6631-4152-8FE5-FC420B612C48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParanaBanco.Service.Customers.Application", "src\ParanaBanco.Service.Customers.Application\ParanaBanco.Service.Customers.Application.csproj", "{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParanaBanco.Service.Customers.Domain", "src\ParanaBanco.Service.Customers.Domain\ParanaBanco.Service.Customers.Domain.csproj", "{87542B3D-79AF-44F3-B7D8-55626065B984}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParanaBanco.Service.Customers.Infrastructure", "src\ParanaBanco.Service.Customers.Infrastructure\ParanaBanco.Service.Customers.Infrastructure.csproj", "{E9A1E886-1CDA-402E-8621-E77F5CC7B79A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D050A580-05AD-450A-A812-8902404C1DFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParanaBanco.Service.Customers.Api", "src\ParanaBanco.Service.Customers.Api\ParanaBanco.Service.Customers.Api.csproj", "{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +21,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD8E537D-2755-4F7C-9BB2-5E3B28B93936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD8E537D-2755-4F7C-9BB2-5E3B28B93936}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD8E537D-2755-4F7C-9BB2-5E3B28B93936}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD8E537D-2755-4F7C-9BB2-5E3B28B93936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87542B3D-79AF-44F3-B7D8-55626065B984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87542B3D-79AF-44F3-B7D8-55626065B984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87542B3D-79AF-44F3-B7D8-55626065B984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87542B3D-79AF-44F3-B7D8-55626065B984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A1E886-1CDA-402E-8621-E77F5CC7B79A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A1E886-1CDA-402E-8621-E77F5CC7B79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A1E886-1CDA-402E-8621-E77F5CC7B79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A1E886-1CDA-402E-8621-E77F5CC7B79A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E0DFD6A-CA08-426B-93F3-3F87EA7F85EE} = {F9CABDF8-6631-4152-8FE5-FC420B612C48}
+		{87542B3D-79AF-44F3-B7D8-55626065B984} = {F9CABDF8-6631-4152-8FE5-FC420B612C48}
+		{E9A1E886-1CDA-402E-8621-E77F5CC7B79A} = {F9CABDF8-6631-4152-8FE5-FC420B612C48}
+		{05C4C2CE-6ABE-4D3F-B36E-5746CBA9300E} = {F9CABDF8-6631-4152-8FE5-FC420B612C48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99DA8F75-99DE-485E-ACC7-A40C77916BA4}

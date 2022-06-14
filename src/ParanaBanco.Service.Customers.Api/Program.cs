@@ -1,11 +1,8 @@
+using ParanaBanco.Service.Customers.Api.Core.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.RegisterDependencies();
 
 var app = builder.Build();
 
