@@ -10,11 +10,11 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly CustomerServices _customerServices;
+        private readonly CustomerService _customerServices;
         private readonly INotificationContext _notificationContext;
         private readonly ILogger _log;
 
-        public CreateCustomerCommandHandler(ICustomerRepository customerRepository, CustomerServices customerServices, INotificationContext notificationContext, ILogger log)
+        public CreateCustomerCommandHandler(ICustomerRepository customerRepository, CustomerService customerServices, INotificationContext notificationContext, ILogger log)
         {
             _customerRepository = customerRepository;
             _customerServices = customerServices;

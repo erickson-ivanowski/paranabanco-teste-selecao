@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using ParanaBanco.Service.Customers.Application.Commands;
 using ParanaBanco.Service.Customers.Application.Core;
 using ParanaBanco.Service.Customers.Domain.Interfaces.Repositories;
+using ParanaBanco.Service.Customers.Domain.Interfaces.Services;
 using ParanaBanco.Service.Customers.Domain.Services;
 using ParanaBanco.Service.Customers.Infrastructure.Data.Config;
 using ParanaBanco.Service.Customers.Infrastructure.Data.Repositories;
@@ -52,13 +53,16 @@ namespace ParanaBanco.Service.Customers.Api.Core.IoC
 
             // Repositories
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-            
+
+            // Domain Services
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
+
             // Notification
             builder.Services.AddScoped<INotificationContext, NotificationContext>();
             builder.Services.AddMvc(options => options.Filters.Add<NotificationFilter>());
 
             // Domain Services
-            builder.Services.AddScoped<CustomerServices>();
+            builder.Services.AddScoped<CustomerService>();
 
             // Serilog
             builder.Host.UseSerilog((ctx, lc) => lc

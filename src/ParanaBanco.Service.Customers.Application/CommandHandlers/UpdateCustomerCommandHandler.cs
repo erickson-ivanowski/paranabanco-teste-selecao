@@ -13,9 +13,9 @@ namespace ParanaBanco.Service.Customers.Application.CommandHandlers
         private readonly ICustomerRepository _customerRepository;
         private readonly INotificationContext _notificationContext;
         private readonly ILogger _log;
-        private readonly CustomerServices _customerServices;
+        private readonly CustomerService _customerServices;
 
-        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, INotificationContext notificationContext, ILogger log, CustomerServices customerServices)
+        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, INotificationContext notificationContext, ILogger log, CustomerService customerServices)
         {
             _customerRepository = customerRepository;
             _notificationContext = notificationContext;

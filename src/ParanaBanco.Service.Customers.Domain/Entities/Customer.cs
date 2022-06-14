@@ -42,9 +42,6 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
         }
 
 
-        private CustomerServices DomainService { get; set; }
-        public void SetDomainService(CustomerServices domainService) => DomainService = domainService;
-
         public override async Task<bool> IsValidAsync()
         {
             await ValidateEmailAsync();
@@ -60,10 +57,6 @@ namespace ParanaBanco.Service.Customers.Domain.Entities
                 AddNotification(new EmailRequiredNotification());
             else if (regex.IsMatch(Email) is false)
                 AddNotification(new EmailInvalidNotification());
-            else if (EmailUpdated is false && await DomainService.EmailExists(Email))
-                AddNotification(new CustomerExistsNotification());
-            else if (NameUpdated is false && await DomainService.EmailExists(Email))
-                AddNotification(new CustomerExistsNotification());
         }
 
         private void ValidateFullName()

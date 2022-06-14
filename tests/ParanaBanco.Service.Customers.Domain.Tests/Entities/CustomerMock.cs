@@ -7,7 +7,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
     public class CustomerMock
     {
         private readonly Mock<ICustomerRepository> CustomerRepositoryMock;
-        private readonly CustomerServices CustomerServices;
+        private readonly CustomerService CustomerServices;
 
         public CustomerMock()
         {
@@ -15,7 +15,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             
             CustomerRepositoryMock = _mocker.GetMock<ICustomerRepository>();
 
-            CustomerServices = _mocker.CreateInstance<CustomerServices>();
+            CustomerServices = _mocker.CreateInstance<CustomerService>();
         }
 
         public void SetupRepository(string email, Customer customer)
@@ -23,7 +23,7 @@ namespace ParanaBanco.Service.Customers.Domain.Tests.Entities
             CustomerRepositoryMock.Setup(x => x.GetCustomerAsync(email)).ReturnsAsync(customer);
         }
 
-        public CustomerServices GetCustomerServices()
+        public CustomerService GetCustomerServices()
         {
             return CustomerServices;
         }
